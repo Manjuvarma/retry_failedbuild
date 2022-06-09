@@ -10,7 +10,8 @@ node {
         }
 
         stage('Build') {
-            bat 'mvn clean install -DskipTests'
+//            bat 'mvn clean install -DskipTests'
+            bat 'mvn clean package'
         }
 
         stage('Unit Test') {
