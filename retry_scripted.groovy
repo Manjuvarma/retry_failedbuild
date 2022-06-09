@@ -10,22 +10,22 @@ node {
         }
 
         stage('Build') {
-            sh 'mvn clean install -DskipTests'
+            bat 'mvn clean install -DskipTests'
         }
 
         stage('Unit Test') {
-            sh 'mvn test'
+            bat 'mvn test'
         }
 
         stage('Integration Test') {
-            sh 'mvn verify -DskipUnitTests -Parq-wildfly-swarm'
+            bat 'mvn verify -DskipUnitTests -Parq-wildfly-swarm'
         }
 
-        stage('SonarQube Analysis') {
-            withSonarQubeEnv(credentialsId: 'sonarscanner') {
-                sh 'mvn sonar:sonar'
-            }
-        }
+//         stage('SonarQube Analysis') {
+//             withSonarQubeEnv(credentialsId: 'sonarscanner') {
+//                 sh 'mvn sonar:sonar'
+//             }
+//         }
         
         stage('Archive Artifacts') {
             archiveArtifacts allowEmptyArchive: false, artifacts: 'target//*.war', caseSensitive: true, defaultExcludes: true, fingerprint: false, onlyIfSuccessful: false
