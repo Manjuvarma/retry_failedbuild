@@ -43,7 +43,7 @@ node {
     
     if (currentBuild.result == 'FAILURE') {
         echo "Retrying Job!"
-        currentBuild.addAction(upstreamBuildRun.getAction(hudson.model.ParametersAction))
+//         currentBuild.addAction(upstreamBuildRun.getAction(hudson.model.ParametersAction))
         build quietPeriod: 300, job: "${JOB_NAME}" 
        }
     }
